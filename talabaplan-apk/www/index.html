@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TalabaPlan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Onest:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#F3F6FB;--sf:#fff;--ink:#121A33;--mu:#5B6584;--ln:#E2E7F2;--lap:#2347D6;--lapd:#14234F;--tq:#14A594;--sa:#E8922A;--rd:#D64550;--tint:#E8EEFF;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D1325;--sf:#162039;--ink:#E8ECF8;--mu:#98A2C3;--ln:#27324F;--lap:#6C89FF;--lapd:#1B2C6B;--tq:#3DD0BE;--sa:#F2A33A;--rd:#FF7480;--tint:#1E2B52}}
+:root[data-theme="dark"]{--bg:#0D1325;--sf:#162039;--ink:#E8ECF8;--mu:#98A2C3;--ln:#27324F;--lap:#6C89FF;--lapd:#1B2C6B;--tq:#3DD0BE;--sa:#F2A33A;--rd:#FF7480;--tint:#1E2B52}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.45 Onest,system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Onest,system-ui,sans-serif;margin:0;letter-spacing:-.02em}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--tq);outline-offset:2px;border-radius:10px}
+#app{max-width:440px;margin:0 auto;padding:20px 18px 110px;min-height:100vh}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.top h1{font-size:26px;font-weight:800}.top p{margin:2px 0 0;color:var(--mu)}
+.badge{background:var(--tint);color:var(--lap);font-weight:600;font-size:12px;padding:5px 10px;border-radius:99px}
+.badge.p{background:var(--sa);color:#1b1200}
+.hero{position:relative;overflow:hidden;color:#fff;border-radius:26px;padding:22px;margin-bottom:22px;background:linear-gradient(160deg,rgba(35,71,214,.0),rgba(20,35,79,.55)),repeating-conic-gradient(from 45deg,rgba(255,255,255,.06) 0 25%,transparent 0 50%) 0 0/30px 30px,var(--lap)}
+.hero small{opacity:.85;font-weight:500}.hero h2{font-size:28px;font-weight:800;margin:6px 0 4px;line-height:1.1}
+.hero .meta{opacity:.9}.bar{height:8px;border-radius:9px;background:rgba(255,255,255,.25);margin-top:16px;overflow:hidden}.bar i{display:block;height:100%;background:#fff;border-radius:9px}
+.hero .big{margin-top:14px;font:700 17px 'Bricolage Grotesque',sans-serif}
+h3.sec{font-size:18px;font-weight:700;margin:6px 0 10px;display:flex;justify-content:space-between;align-items:center}
+h3.sec button{font:600 14px Onest,sans-serif;color:var(--lap);padding:6px 4px}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:18px;padding:14px 16px;margin-bottom:10px}
+.row{display:flex;gap:14px;align-items:center}
+.tm{min-width:56px;font:600 14px 'Bricolage Grotesque',sans-serif;line-height:1.3}.tm span{color:var(--mu);font-weight:500;display:block}
+.grow{flex:1;min-width:0}.nm{font-weight:600}.sub{color:var(--mu);font-size:13px}
+.x{color:var(--mu);width:34px;height:34px;border-radius:10px;font-size:20px}.x:hover{background:var(--tint)}
+.chips{display:flex;gap:8px;margin-bottom:16px}.chip{flex:1;padding:10px 0;border-radius:14px;background:var(--sf);border:1px solid var(--ln);font-weight:600;text-align:center}
+.chip[aria-pressed=true]{background:var(--lap);border-color:var(--lap);color:#fff}
+.btn{display:block;width:100%;padding:14px;border-radius:16px;background:var(--lap);color:#fff;font-weight:600;text-align:center}
+.btn.ghost{background:var(--tint);color:var(--lap)}.btn.tq{background:var(--tq);color:#06231f}
+.chk{width:26px;height:26px;border-radius:9px;border:2px solid var(--ln);flex:none;display:grid;place-items:center;color:#fff}
+.done .chk{background:var(--tq);border-color:var(--tq)}.done .nm{text-decoration:line-through;color:var(--mu)}
+.due{font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--tint);color:var(--lap);white-space:nowrap}
+.due.w{background:rgba(232,146,42,.18);color:var(--sa)}.due.r{background:rgba(214,69,80,.15);color:var(--rd)}
+.exam{display:flex;align-items:center;gap:14px}.exam b{font:800 34px 'Bricolage Grotesque',sans-serif;color:var(--lap);min-width:64px;text-align:center;line-height:1}
+.exam b small{display:block;font:500 12px Onest,sans-serif;color:var(--mu)}
+.ad{display:flex;gap:10px;align-items:center;border:1px dashed var(--ln);border-radius:14px;padding:10px 12px;color:var(--mu);font-size:13px;margin:14px 0}
+.empty{text-align:center;color:var(--mu);padding:26px 10px;border:1px dashed var(--ln);border-radius:18px;margin-bottom:10px}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:0 12px calc(10px + env(safe-area-inset-bottom,0px));pointer-events:none}
+nav div{pointer-events:auto;width:100%;max-width:416px;display:flex;background:var(--sf);border:1px solid var(--ln);border-radius:24px;padding:6px;box-shadow:0 8px 30px rgba(20,35,79,.16)}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0;border-radius:18px;font-size:11px;font-weight:600;color:var(--mu)}
+nav button[aria-current=page]{background:var(--tint);color:var(--lap)}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ring{position:relative;width:250px;height:250px;margin:10px auto 22px}.ring svg{transform:rotate(-90deg)}
+.ring div{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.ring b{font:800 56px 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em}.ring span{color:var(--mu);font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lock{position:relative}.lock .cv{filter:blur(4px);opacity:.6;pointer-events:none}.lock button{position:absolute;inset:0;font-weight:600;color:var(--lap)}
+.bars{display:flex;gap:8px;align-items:flex-end;height:90px}.bars i{flex:1;background:var(--lap);border-radius:8px 8px 3px 3px;opacity:.85}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--tint);border-radius:16px;padding:4px;margin-bottom:16px}
+.seg button{padding:10px;border-radius:12px;font-weight:600;color:var(--mu)}.seg button[aria-pressed=true]{background:var(--sf);color:var(--lap)}
+.price{font:800 40px 'Bricolage Grotesque',sans-serif;margin:4px 0}.price small{font:500 14px Onest,sans-serif;color:var(--mu)}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:9px 4px;border-bottom:1px solid var(--ln);text-align:center}td:first-child,th:first-child{text-align:left}th{color:var(--mu);font-weight:600}
+.ov{position:fixed;inset:0;background:rgba(10,16,35,.5);display:flex;align-items:flex-end;justify-content:center;z-index:9}
+.sheet{width:100%;max-width:440px;background:var(--sf);border-radius:26px 26px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom,0px));animation:up .22s ease-out}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+label{display:block;font-size:13px;font-weight:600;color:var(--mu);margin:12px 0 5px}
+input,select{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--ln);background:var(--bg)}
+.toast{position:fixed;left:50%;bottom:104px;transform:translateX(-50%);background:var(--lapd);color:#fff;padding:11px 18px;border-radius:14px;font-weight:600;z-index:10;max-width:90%;text-align:center}
+@media(prefers-reduced-motion:reduce){.sheet{animation:none}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const $=s=>document.querySelector(s),K='talabaplan-v1';
+const D=n=>{const d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)};
+const WD=['Yakshanba','Dushanba','Seshanba','Chorshanba','Payshanba','Juma','Shanba'],SH=['Du','Se','Ch','Pa','Ju','Sh'],
+MO=['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentyabr','oktyabr','noyabr','dekabr'];
+const C=(d,s,e,n,r)=>({id:Math.random(),d,s,e,n,r});
+let S={tab:'today',day:null,seg:'yil',prem:false,sessions:2,
+classes:[C(1,'09:00','10:20','Mikroiqtisodiyot','214-xona'),C(1,'10:30','11:50','Statistika','305-xona'),C(2,'11:00','12:20','Marketing','118-xona'),C(2,'13:30','14:50','Ingliz tili','402-xona'),C(3,'09:00','10:20','Mikroiqtisodiyot','214-xona'),C(3,'12:30','13:50','Axborot texnologiyalari','Kompyuter xonasi'),C(4,'09:00','10:20','Statistika','305-xona'),C(4,'10:30','11:50','Marketing','118-xona'),C(4,'14:00','15:20','Ingliz tili','402-xona'),C(5,'09:00','10:20','Biznes asoslari','220-xona'),C(5,'11:00','12:00','Tarbiyaviy soat','Aktlar zali'),C(6,'09:00','10:20','Ingliz tili','402-xona')],
+tasks:[{id:1,t:'Marketing referati',d:D(2),ok:0},{id:2,t:'Statistika: 3-laboratoriya ishi',d:D(5),ok:0},{id:3,t:'Ingliz tili: soʻz yodlash',d:D(1),ok:0}],
+exams:[{id:1,t:'Mikroiqtisodiyot yakuniy imtihoni',d:D(12)}]};
+try{const r=localStorage.getItem(K);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tm=s=>+s.slice(0,2)*60+ +s.slice(3);
+const left=d=>Math.round((new Date(d+'T00:00')-new Date(new Date().toDateString()))/864e5);
+const fm=m=>m>=60?`${Math.floor(m/60)} soat ${m%60} daq`:`${m} daq`;
+const dl=d=>{const n=left(d);return n<0?['Muddat oʻtgan','r']:n==0?['Bugun','r']:n==1?['Ertaga','w']:n<=3?[n+' kun qoldi','w']:[n+' kun qoldi','']};
+const FREE={tasks:15,exams:1};
+const ic={today:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',plan:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>',tasks:'<path d="M9 6h11M9 12h11M9 18h11M3.5 6l1.2 1.2L6.5 5M3.5 12l1.2 1.2L6.5 11M3.5 18l1.2 1.2L6.5 17"/>',focus:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/>',prem:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>'};
+const I=k=>`<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${ic[k]}</svg>`;
+const TABS=[['today','Bugun'],['plan','Jadval'],['tasks','Vazifalar'],['focus','Fokus'],['prem','Premium']];
+let F={mode:'f',sec:1500,run:false,t:null};
+const dur=()=>F.mode=='f'?1500:300;
+
+function hero(){const n=new Date(),m=n.getHours()*60+n.getMinutes(),L=S.classes.filter(c=>c.d==n.getDay()).sort((a,b)=>tm(a.s)-tm(b.s));
+const cur=L.find(c=>tm(c.s)<=m&&m<tm(c.e)),nx=L.find(c=>tm(c.s)>m);
+const h=(lab,c,big,p)=>`<div class="hero"><small>${lab}</small><h2>${esc(c.n)}</h2><div class="meta">${c.s}–${c.e} · ${esc(c.r)}</div><div class="big">${big}</div>${p!=null?`<div class="bar"><i style="width:${Math.round(p*100)}%"></i></div>`:''}</div>`;
+if(cur)return h('Hozir davom etmoqda',cur,fm(tm(cur.e)-m)+' qoldi',(m-tm(cur.s))/(tm(cur.e)-tm(cur.s)));
+if(nx)return h('Keyingi dars',nx,fm(tm(nx.s)-m)+'dan keyin boshlanadi');
+return `<div class="hero"><small>${L.length?'Bugungi darslar tugadi':'Bugun dars yoʻq'}</small><h2>Vazifalarga vaqt ajrating</h2><div class="meta">Eng yaqin muddatni birinchi bajaring.</div></div>`}
+function clsRow(c,del){return `<div class="card row"><div class="tm">${c.s}<span>${c.e}</span></div><div class="grow"><div class="nm">${esc(c.n)}</div><div class="sub">${esc(c.r)}</div></div>${del?`<button class="x" data-a="delc" data-id="${c.id}" aria-label="Darsni oʻchirish">×</button>`:''}</div>`}
+function taskRow(t){const [x,k]=dl(t.d);return `<div class="card row ${t.ok?'done':''}"><button class="chk" data-a="tog" data-id="${t.id}" aria-label="Bajarildi deb belgilash">${t.ok?'✓':''}</button><div class="grow"><div class="nm">${esc(t.t)}</div></div>${t.ok?'':`<span class="due ${k}">${x}</span>`}<button class="x" data-a="delt" data-id="${t.id}" aria-label="Vazifani oʻchirish">×</button></div>`}
+function examCard(e,del){const n=left(e.d),dt=new Date(e.d+'T00:00');return `<div class="card exam"><b>${Math.max(n,0)}<small>kun</small></b><div class="grow"><div class="nm">${esc(e.t)}</div><div class="sub">${dt.getDate()} ${MO[dt.getMonth()]}</div></div>${del?`<button class="x" data-a="dele" data-id="${e.id}" aria-label="Imtihonni oʻchirish">×</button>`:''}</div>`}
+
+function vToday(){const n=new Date(),hr=n.getHours(),g=hr<5?'Xayrli tun':hr<12?'Xayrli tong':hr<18?'Xayrli kun':'Xayrli kech';
+const L=S.classes.filter(c=>c.d==n.getDay()).sort((a,b)=>tm(a.s)-tm(b.s)),T=S.tasks.filter(t=>!t.ok).sort((a,b)=>a.d<b.d?-1:1).slice(0,3);
+return `<div class="top"><div><h1>${g}</h1><p>${WD[n.getDay()]}, ${n.getDate()} ${MO[n.getMonth()]}</p></div><span class="badge ${S.prem?'p':''}">${S.prem?'Premium':'Bepul'}</span></div>${hero()}
+<h3 class="sec">Bugungi darslar</h3>${L.length?L.map(c=>clsRow(c)).join(''):'<div class="empty">Bugun darslar yoʻq. Dam oling yoki vazifalarni bajaring.</div>'}
+<h3 class="sec">Yaqin muddatlar<button data-a="go" data-id="tasks">Barchasi</button></h3>${T.length?T.map(taskRow).join(''):'<div class="empty">Faol vazifa yoʻq. Yangi vazifa qoʻshing.</div>'}
+${S.exams[0]?`<h3 class="sec">Imtihon</h3>${examCard(S.exams.slice().sort((a,b)=>a.d<b.d?-1:1)[0])}`:''}
+${S.prem?'':'<div class="ad"><span>Reklama</span><span>Talabalar uchun kofe 20% chegirma. Reklamasiz ishlash uchun Premium.</span></div>'}`}
+function vPlan(){let d=S.day||(new Date().getDay()||1);const L=S.classes.filter(c=>c.d==d).sort((a,b)=>tm(a.s)-tm(b.s));
+return `<div class="top"><div><h1>Dars jadvali</h1><p>Haftalik jadval</p></div></div><div class="chips">${SH.map((s,i)=>`<button class="chip" data-a="day" data-id="${i+1}" aria-pressed="${d==i+1}">${s}</button>`).join('')}</div>
+${L.length?L.map(c=>clsRow(c,1)).join(''):'<div class="empty">Bu kunda dars yoʻq.</div>'}<button class="btn" data-a="add" data-id="class">Dars qoʻshish</button>
+<button class="btn ghost" style="margin-top:10px" data-a="share">Jadvalni guruhdoshlarga ulashish${S.prem?'':' (Premium)'}</button>`}
+function aiPlan(){const T=S.tasks.filter(t=>!t.ok).sort((a,b)=>a.d<b.d?-1:1).slice(0,3);
+return `<div class="card"><div class="nm">Haftalik oʻqish rejasi</div>${T.length?T.map((t,i)=>{const n=Math.max(left(t.d)-1,0),dt=new Date();dt.setDate(dt.getDate()+Math.min(i,n));return `<div class="sub" style="margin-top:6px"><b>${WD[dt.getDay()]}:</b> ${esc(t.t)}, ${i?45:60} daqiqa</div>`}).join(''):'<div class="sub">Reja tuzish uchun vazifa qoʻshing.</div>'}</div>`}
+function vTasks(){const A=S.tasks.filter(t=>!t.ok).sort((a,b)=>a.d<b.d?-1:1),Dn=S.tasks.filter(t=>t.ok);
+return `<div class="top"><div><h1>Vazifalar</h1><p>${S.prem?A.length+' ta faol':A.length+' / '+FREE.tasks+' ta faol'}</p></div></div>
+${A.length||Dn.length?A.concat(Dn).map(taskRow).join(''):'<div class="empty">Hali vazifa yoʻq. Birinchisini qoʻshing.</div>'}
+<button class="btn" data-a="add" data-id="task">Vazifa qoʻshish</button>
+<h3 class="sec" style="margin-top:26px">Imtihonlar</h3>${S.exams.length?S.exams.map(e=>examCard(e,1)).join(''):'<div class="empty">Imtihon sanasini qoʻshing.</div>'}
+<button class="btn ghost" data-a="add" data-id="exam">Imtihon qoʻshish${S.prem?'':' ('+S.exams.length+'/'+FREE.exams+')'}</button>
+<h3 class="sec" style="margin-top:26px">Sunʼiy intellekt rejasi</h3>${S.prem?aiPlan():`<div class="lock"><div class="cv">${aiPlan()}</div><button data-a="go" data-id="prem">Premium bilan ochiladi</button></div>`}`}
+function vFocus(){const p=1-F.sec/dur(),R=108,Cc=2*Math.PI*R,bars=[3,5,2,4,6,1,S.sessions];
+const st=`<div class="card"><div class="nm">Haftalik statistika</div><div class="bars" style="margin-top:12px">${bars.map(v=>`<i style="height:${Math.max(v*14,8)}px"></i>`).join('')}</div></div>`;
+return `<div class="top"><div><h1>Fokus</h1><p>25 daqiqa diqqat, 5 daqiqa tanaffus</p></div></div>
+<div class="ring"><svg width="250" height="250" viewBox="0 0 250 250"><circle cx="125" cy="125" r="${R}" fill="none" stroke="var(--ln)" stroke-width="14"/><circle id="arc" cx="125" cy="125" r="${R}" fill="none" stroke="${F.mode=='f'?'var(--lap)':'var(--tq)'}" stroke-width="14" stroke-linecap="round" stroke-dasharray="${Cc}" stroke-dashoffset="${Cc*(1-p)}"/></svg><div><b id="clk">${clock()}</b><span>${F.mode=='f'?'Diqqat':'Tanaffus'}</span></div></div>
+<div class="two"><button class="btn ${F.run?'ghost':''}" data-a="run">${F.run?'Toʻxtatish':'Boshlash'}</button><button class="btn ghost" data-a="reset">Qayta boshlash</button></div>
+<div class="card row" style="margin-top:16px"><div class="grow"><div class="nm">Bugungi sessiyalar</div><div class="sub">Tugallangan diqqat bloklari</div></div><b style="font:800 32px 'Bricolage Grotesque'">${S.sessions}</b></div>
+${S.prem?st:`<div class="lock"><div class="cv">${st}</div><button data-a="go" data-id="prem">Statistika Premiumda</button></div>`}`}
+const clock=()=>String(Math.floor(F.sec/60)).padStart(2,'0')+':'+String(F.sec%60).padStart(2,'0');
+function vPrem(){const y=S.seg=='yil',R=[['Dars jadvali va eslatmalar','✓','✓'],['Faol vazifalar','15 ta','Cheksiz'],['Imtihon sanagichi','1 ta','Cheksiz'],['Jadvalni ulashish','–','✓'],['Bulutli sinxronlash','–','✓'],['Sunʼiy intellekt rejasi','–','✓'],['Toʻliq statistika','–','✓'],['Reklamasiz','–','✓']];
+return `<div class="top"><div><h1>Premium</h1><p>Koʻproq nazorat, kamroq stress</p></div></div>
+<div class="seg"><button data-a="seg" data-id="oy" aria-pressed="${!y}">Oylik</button><button data-a="seg" data-id="yil" aria-pressed="${y}">Yillik −35%</button></div>
+<div class="card"><div class="price">${y?'149 000':'19 000'} <small>soʻm / ${y?'yil':'oy'}</small></div><div class="sub">${y?'Oyiga atigi ~12 400 soʻm. ':''}Payme va Click orqali toʻlov. Istalgan vaqtda bekor qilinadi.</div></div>
+<div class="card"><table><tr><th></th><th>Bepul</th><th>Premium</th></tr>${R.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table></div>
+${S.prem?'<button class="btn ghost" data-a="unprem">Premiumni bekor qilish (demo)</button>':'<button class="btn tq" data-a="prem">7 kun bepul sinab koʻring</button><p class="sub" style="text-align:center">Bu namunaviy ilova: haqiqiy toʻlov olinmaydi.</p>'}`}
+const V={today:vToday,plan:vPlan,tasks:vTasks,focus:vFocus,prem:vPrem};
+function render(){$('#app').innerHTML=V[S.tab]()+`<nav><div role="tablist">${TABS.map(t=>`<button data-a="go" data-id="${t[0]}" ${S.tab==t[0]?'aria-current="page"':''}>${I(t[0])}${t[1]}</button>`).join('')}</div></nav>`}
+function toast(m){document.querySelector('.toast')?.remove();const e=document.createElement('div');e.className='toast';e.textContent=m;document.body.appendChild(e);setTimeout(()=>e.remove(),2400)}
+function sheet(k){const f={class:`<label>Fan nomi</label><input id="f1"><label>Kun</label><select id="f2">${SH.map((s,i)=>`<option value="${i+1}" ${(S.day||1)==i+1?'selected':''}>${WD[i+1]}</option>`).join('')}</select><div class="two"><div><label>Boshlanishi</label><input id="f3" type="time" value="09:00"></div><div><label>Tugashi</label><input id="f4" type="time" value="10:20"></div></div><label>Xona</label><input id="f5">`,
+task:`<label>Vazifa</label><input id="f1"><label>Topshirish sanasi</label><input id="f2" type="date" value="${D(3)}">`,exam:`<label>Imtihon nomi</label><input id="f1"><label>Sana</label><input id="f2" type="date" value="${D(14)}">`};
+const T={class:'Yangi dars',task:'Yangi vazifa',exam:'Yangi imtihon'};
+const o=document.createElement('div');o.className='ov';o.innerHTML=`<div class="sheet" role="dialog" aria-label="${T[k]}"><h2>${T[k]}</h2>${f[k]}<div class="two" style="margin-top:18px"><button class="btn ghost" data-a="close">Bekor qilish</button><button class="btn" data-a="ok" data-id="${k}">Saqlash</button></div></div>`;document.body.appendChild(o);o.querySelector('input').focus()}
+function paywall(w){const o=document.createElement('div');o.className='ov';o.innerHTML=`<div class="sheet" role="dialog" aria-label="Premium"><h2>${w}</h2><p class="sub">Bepul tarifda bu imkoniyat cheklangan. Premium bilan cheklovsiz ishlang.</p><div class="two"><button class="btn ghost" data-a="close">Keyinroq</button><button class="btn tq" data-a="gop">Premiumni koʻrish</button></div></div>`;document.body.appendChild(o)}
+function tick(){F.sec--;if(F.sec<=0){if(F.mode=='f'){S.sessions++;save();toast('Diqqat bloki tugadi. Tanaffus qiling.')}F.mode=F.mode=='f'?'b':'f';F.sec=dur();F.run=false;clearInterval(F.t);render();return}
+const c=$('#clk');if(c){c.textContent=clock();$('#arc').setAttribute('stroke-dashoffset',2*Math.PI*108*(F.sec/dur()))}}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,id=b.dataset.id,close=()=>document.querySelector('.ov')?.remove();
+const act=S.tasks.filter(t=>!t.ok).length;
+if(a=='go'){S.tab=id;render();scrollTo(0,0)}
+else if(a=='day'){S.day=+id;render()}
+else if(a=='seg'){S.seg=id;render()}
+else if(a=='add'){if(!S.prem&&id=='task'&&act>=FREE.tasks)paywall('Faol vazifalar limiti tugadi');else if(!S.prem&&id=='exam'&&S.exams.length>=FREE.exams)paywall('Bepul tarifda 1 ta imtihon');else sheet(id)}
+else if(a=='close')close();
+else if(a=='gop'){close();S.tab='prem';render()}
+else if(a=='ok'){const v=n=>(document.getElementById('f'+n)||{}).value||'';
+if(!v(1).trim()){toast('Nomini kiriting');return}
+if(id=='class'){if(tm(v(4)||'00:00')<=tm(v(3)||'00:00')){toast('Tugash vaqti boshlanishidan keyin boʻlsin');return}S.classes.push(C(+v(2),v(3),v(4),v(1).trim(),v(5).trim()||'Xona koʻrsatilmagan'));S.day=+v(2)}
+else if(id=='task')S.tasks.push({id:Math.random(),t:v(1).trim(),d:v(2),ok:0});else S.exams.push({id:Math.random(),t:v(1).trim(),d:v(2)});
+save();close();render();toast('Saqlandi')}
+else if(a=='delc'){S.classes=S.classes.filter(c=>c.id!=id);save();render()}
+else if(a=='delt'){S.tasks=S.tasks.filter(c=>c.id!=id);save();render()}
+else if(a=='dele'){S.exams=S.exams.filter(c=>c.id!=id);save();render()}
+else if(a=='tog'){const t=S.tasks.find(t=>t.id==id);t.ok=t.ok?0:1;save();render()}
+else if(a=='share'){S.prem?toast('Havola nusxalandi (demo)'):paywall('Jadvalni ulashish Premiumda')}
+else if(a=='run'){F.run=!F.run;clearInterval(F.t);if(F.run)F.t=setInterval(tick,1000);render()}
+else if(a=='reset'){clearInterval(F.t);F.run=false;F.mode='f';F.sec=1500;render()}
+else if(a=='prem'){S.prem=true;save();render();toast('Premium yoqildi (demo)')}
+else if(a=='unprem'){S.prem=false;save();render()}});
+render();
+</script>
+</body>
+</html>
